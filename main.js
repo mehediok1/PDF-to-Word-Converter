@@ -67,5 +67,5 @@ Actor.main(async () => {
 
     await crawler.run();
 
-    console.log('Crawling finished successfully.');
+   
 });
