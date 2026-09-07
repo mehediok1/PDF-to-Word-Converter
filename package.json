@@ -1,13 +1,14 @@
 {
     "name": "files-scraper",
     "version": "1.0.0",
-    "description": "Website content crawler for ZoneOfTools",
+    "description": "ZoneOfTools website content crawler",
     "main": "main.js",
     "scripts": {
         "start": "node main.js"
     },
     "dependencies": {
         "apify": "^3.7.2",
-        "crawlee": "^3.16.0"
+        "crawlee": "^3.16.0",
+        "playwright": "^1.55.0"
     }
 }
