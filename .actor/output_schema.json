@@ -1,0 +1,13 @@
+{
+    "actorOutputSchemaVersion": 1,
+    "title": "Output schema of the ZoneOfTools content crawler",
+    "description": "Contains the extracted content from crawled ZoneOfTools webpages.",
+    "properties": {
+        "results": {
+            "type": "string",
+            "title": "Crawl Results",
+            "description": "Extracted webpage data including URL, page title, meta description, and page content.",
+            "template": "{{links.apiDefaultDatasetUrl}}/items"
+        }
+    }
+}
