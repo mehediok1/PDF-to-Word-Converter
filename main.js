@@ -10,7 +10,6 @@ Actor.main(async () => {
                 url: 'https://zoneoftools.com/tools/pdf-to-word'
             }
         ],
-        maxCrawlDepth = 0,
         maxCrawlPages = 1
     } = input;
 
@@ -20,13 +19,9 @@ Actor.main(async () => {
         async requestHandler({ page, request, log }) {
             log.info(`Crawling: ${request.url}`);
 
-            // Wait for the page to load
             await page.waitForLoadState('domcontentloaded');
-
-            // Give JavaScript content some time to render
             await page.waitForTimeout(1000);
 
-            // Extract page information
             const data = await page.evaluate(() => {
                 const getMetaContent = (name) => {
                     const element =
@@ -36,7 +31,6 @@ Actor.main(async () => {
                     return element?.getAttribute('content') || '';
                 };
 
-                // Remove unwanted elements from a cloned document
                 const clone = document.body.cloneNode(true);
 
                 clone.querySelectorAll(
@@ -55,7 +49,6 @@ Actor.main(async () => {
                 };
             });
 
-            // Save the extracted data to the Apify Dataset
             await Dataset.pushData(data);
 
             log.info(`Successfully extracted content from: ${request.url}`);
@@ -63,20 +56,16 @@ Actor.main(async () => {
 
         async failedRequestHandler({ request, log }) {
             log.error(`Request failed: ${request.url}`);
-        },
+        }
     });
 
-    // Add start URLs
     await crawler.addRequests(
         startUrls.map((item) => ({
-            url: item.url,
-            userData: {
-                depth: 0
-            }
+            url: item.url
         }))
     );
 
     await crawler.run();
 
-    log.info('Crawling finished successfully.');
+    console.log('Crawling finished successfully.');
 });
