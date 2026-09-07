@@ -6,6 +6,27 @@
     "output": {
         "actorOutputSchemaVersion": 1,
         "title": "Output schema of the files scraper",
-        "properties": { /* define your outputs here */ }
+        "properties": {
+            "url": {
+                "title": "URL",
+                "type": "string",
+                "description": "The URL of the crawled webpage."
+            },
+            "title": {
+                "title": "Page Title",
+                "type": "string",
+                "description": "The title of the crawled webpage."
+            },
+            "description": {
+                "title": "Description",
+                "type": "string",
+                "description": "The meta description of the crawled webpage."
+            },
+            "content": {
+                "title": "Content",
+                "type": "string",
+                "description": "The extracted text content from the crawled webpage."
+            }
+        }
     }
 }
