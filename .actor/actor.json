@@ -1,0 +1,7 @@
+{
+    "actorSpecification": 1,
+    "name": "files-scraper",
+    "title": "Files scraper",
+    "version": "1.0",
+    "output": "./output_schema.json"
+}
