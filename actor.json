@@ -1,0 +1,11 @@
+{
+    "actorSpecification": 1,
+    "name": "files-scraper",
+    "title": "Files scraper",
+    "version": "1.0",
+    "output": {
+        "actorOutputSchemaVersion": 1,
+        "title": "Output schema of the files scraper",
+        "properties": { /* define your outputs here */ }
+    }
+}
