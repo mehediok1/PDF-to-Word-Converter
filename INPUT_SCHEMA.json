@@ -1,0 +1,68 @@
+{
+    "title": "Input schema for ZoneOfTools Content Crawler",
+    "description": "Crawl the ZoneOfTools PDF to Word Converter page and extract its website content.",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "startUrls": {
+            "title": "Start URLs",
+            "type": "array",
+            "description": "Enter the URL of the website page you want to crawl. The crawler will start from this URL and extract its content.",
+            "editor": "requestListSources",
+            "prefill": [
+                {
+                    "url": "https://zoneoftools.com/tools/pdf-to-word"
+                }
+            ]
+        },
+        "crawlerType": {
+            "sectionCaption": "Crawler settings",
+            "title": "Crawler type",
+            "type": "string",
+            "enum": [
+                "playwright:chrome",
+                "cheerio",
+                "jsdom"
+            ],
+            "enumTitles": [
+                "Headless web browser (Chrome + Playwright)",
+                "Raw HTTP client (Cheerio)",
+                "Raw HTTP client with JS execution (JSDOM)"
+            ],
+            "description": "Select the crawling engine:\n- **Headless web browser (Chrome + Playwright)** - Recommended for modern websites that use JavaScript. It renders the page like a real browser.\n- **Raw HTTP client (Cheerio)** - Faster and cheaper, but may not work correctly with JavaScript-heavy websites.\n- **Raw HTTP client with JS execution (JSDOM)** - Executes JavaScript using JSDOM. This option is experimental.",
+            "default": "playwright:chrome"
+        },
+        "maxCrawlDepth": {
+            "title": "Max crawling depth",
+            "type": "integer",
+            "description": "The maximum number of link levels the crawler will follow from the start URL. The start URL has depth 0. Set this to 0 to crawl only the specified start URL.",
+            "minimum": 0,
+            "default": 0
+        },
+        "maxCrawlPages": {
+            "title": "Max pages",
+            "type": "integer",
+            "description": "The maximum number of pages to crawl. The crawler will automatically stop after reaching this limit.",
+            "minimum": 1,
+            "default": 1
+        },
+        "includeLinks": {
+            "title": "Include links",
+            "type": "boolean",
+            "description": "Extract links found on the crawled page.",
+            "default": true
+        },
+        "includeImages": {
+            "title": "Include images",
+            "type": "boolean",
+            "description": "Extract image URLs found on the crawled page.",
+            "default": false
+        },
+        "removeNavigation": {
+            "title": "Remove navigation and footer",
+            "type": "boolean",
+            "description": "Remove common navigation menus, headers, footers, and other boilerplate elements to focus on the main page content.",
+            "default": true
+        }
+    }
+}
